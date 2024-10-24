@@ -76,7 +76,7 @@ def Differences_Mesure(Y_1, Y_2, Y_obs):
 
     except ZeroDivisionError :
         print('Error: Division by zero')
-    return
+    return DM
 
 #Double Fault Measure
 
@@ -108,3 +108,43 @@ def D_DF_Mesure(Y_1, Y_2, Y_obs):
 
 #==================================Non-Pairwise Diversity==================================
 
+
+
+def Entropy(Y_Classifiers ,Y_obs):
+    try:
+
+        N = len(Y_obs)
+        L = len(Y_Classifiers)
+
+        perdictions = list(zip(*Y_Classifiers))
+
+        E_prime=0
+
+        for j in range(N):
+            
+            correct_predictions = sum([1 for i in range(L) if perdictions[j][i] == Y_obs[j]])
+
+            min_term = min(correct_predictions, L-correct_predictions)
+
+            E_prime += min_term/(L - L/2)
+
+        E = E_prime/N
+
+    except ZeroDivisionError :
+        print('Error: Division by zero')
+
+    except ValueError:
+        print('Error: The length of the arrays are not equal')    
+
+    return E
+
+
+# def Kohavi_Wolpert_Variance(Y_Classifiers ,Y_obs):
+#     try:
+
+#         N = len(Y_obs)
+#         L = len(Y_Classifiers)
+
+        
+
+        
