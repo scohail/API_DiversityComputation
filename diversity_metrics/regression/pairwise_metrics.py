@@ -1,5 +1,6 @@
 import numpy as np
 from .base_metric import RegressionMetric
+from scipy.stats import rankdata
 
 class CorrelationCoefficient(RegressionMetric):
     """
@@ -19,7 +20,7 @@ class CorrelationCoefficient(RegressionMetric):
         # Calculate standard deviations
         std_y1 = np.std(self.y1)
         std_y2 = np.std(self.y2)
-        print(std_y1, std_y2)
+        
 
         denomenator = std_y1 * std_y2   
         if denomenator == 0:
@@ -61,7 +62,6 @@ class mean_absolute_difference(RegressionMetric):
         return np.mean(np.abs(self.y1 - self.y2))
 
 
-
 class error_correlation(RegressionMetric):
     """
     Calculate the error correlation between the outputs of two regressors.
@@ -96,3 +96,149 @@ class Disagreement_Mesure(RegressionMetric):
         disagreement_count = np.sum(np.abs(self.y1 - self.y2) > self.threshold)
 
         return disagreement_count / len(self.y1)
+
+
+class Rank_Correlation(RegressionMetric):
+    """
+    Calculate the Rank Correlation between two regressors.
+    """
+        
+    def calculate(self):
+        """
+        Calculate Spearman's rank correlation (ρ) between y1 and y2.
+
+        Returns:
+        float: Spearman's rank correlation coefficient.
+        """
+
+        # Calculate the rank of y1 and y2
+
+        rank_y1 = rankdata(self.y1)
+        rank_y2 = rankdata(self.y2)
+        
+        d= rank_y1 - rank_y2
+
+        #Calculate the spearman's rank correlation
+
+
+        sum_d_square = np.sum(d**2)
+        spearmans= 1 - (6*sum_d_square)/(len(self.y1)*(len(self.y1)**2 -1))
+
+        return spearmans
+    
+
+class Q_statistic(RegressionMetric):
+    """
+    Calculate the Q statistic between two regressors.
+    """
+        
+    def calculate(self):
+        """
+        Calculate the Q statistic between y1 and y2.
+
+        Returns:
+        float: Q statistic.
+        """
+
+        if self.y_true is None:
+            raise ValueError("The real observations are required for the Q statistic.")
+        
+        # Calculate the contingency table values as scalar counts
+        a = np.sum((self.y1 == self.y_true) & (self.y2 == self.y_true))      # Both match y_true
+        b = np.sum((self.y1 == self.y_true) & (self.y2 != self.y_true))      # y1 matches y_true, y2 does not
+        c = np.sum((self.y1 != self.y_true) & (self.y2 == self.y_true))      # y2 matches y_true, y1 does not
+        d = np.sum((self.y1 != self.y_true) & (self.y2 != self.y_true))      # Neither matches y_true
+
+        
+
+        denominator = ((a*d) + (c*d))
+        
+
+        if denominator == 0:
+            raise ZeroDivisionError("Denominator ((a*d) + (c*d)) is zero")
+        
+        return (a*d - b*c) / denominator
+    
+
+class Covariance_Error(RegressionMetric):
+    """
+    Calculate the Covariance Error between two regressors.
+    """
+        
+    def calculate(self):
+        """
+        Calculate the Covariance Error between y1 and y2.
+
+        Returns:
+        float: Covariance Error.
+        """
+
+        if self.y_true is None:
+            raise ValueError("The real observations are required for the Covariance Error.")
+        
+        # Calculate the covariance of the errors
+        
+        mean_error_y1 = np.mean(self.y1 - self.y_true)
+        mean_error_y2 = np.mean(self.y2 - self.y_true)
+
+        error1= self.y1 - self.y_true
+        error2= self.y2 - self.y_true
+
+        covariance = np.mean((error1 - mean_error_y1) * (error2 - mean_error_y2))
+
+        return covariance
+    
+
+class Partial_Correlation_coefficient(RegressionMetric):
+    """
+    Calculate the Partial Correlation Coefficient between two regressors.
+    """
+        
+    def calculate(self):
+        """
+        Calculate the Partial Correlation Coefficient between y1 and y2.
+
+        Returns:
+        float: Partial Correlation Coefficient.
+        """
+        if self.y_true is None:
+            raise ValueError("The real observations are required for the Partial Correlation Coefficient.")
+
+        # Calculate the pairwise correlations
+        rho_y1_y2 = CorrelationCoefficient(self.y1, self.y2).calculate()
+        rho_y1_ytrue = CorrelationCoefficient(self.y1, self.y_true).calculate()
+        rho_y2_ytrue = CorrelationCoefficient(self.y2, self.y_true).calculate()
+
+        
+
+        # Calculate partial correlation coefficient
+        numerator = rho_y1_y2 - (rho_y1_ytrue * rho_y2_ytrue)
+        denominator = np.sqrt((1 - rho_y1_ytrue**2) * (1 - rho_y2_ytrue**2))
+        
+        if denominator == 0:
+            raise ValueError("Denominator is zero, partial correlation is undefined.")
+
+        partial_correlation = numerator / denominator
+
+        return partial_correlation
+
+
+class Double_Fault_Measure(RegressionMetric):
+    """
+    Calculate the Double Fault Measure between two regressors.
+    """
+        
+    def calculate(self):
+        """Counts instances where both regressors have large errors simultaneously
+        
+        Returns:
+        float: Double Fault Measure.
+        """
+        if self.threshold is None:
+            raise ValueError("Threshold must be specified for the Double Fault Measure.")
+        if self.y_true is None:
+            raise ValueError("The real observations are required for the Double Fault Measure.")
+        
+        count = np.sum((np.abs(self.y1 - self.y_true) > self.threshold) & (np.abs(self.y2 - self.y_true) > self.threshold))
+
+        return count / len(self.y1)
