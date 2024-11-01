@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 import numpy as np
 
-class RegressionMetric(ABC):
+
+
+class PairwiseRegressionMetric(ABC):
     """
     Abstract base class for regression diversity metrics.
     """
@@ -34,6 +36,6 @@ class RegressionMetric(ABC):
     @abstractmethod
     def calculate(self):
         """
-        Calculate the metric value. Must be implemented in subclasses.
+        Calculate the metric value. it's implemented in the subclasses.
         """
         pass

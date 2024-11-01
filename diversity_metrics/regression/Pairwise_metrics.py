@@ -1,8 +1,11 @@
 import numpy as np
-from .base_metric import RegressionMetric
+from .Pairwise_base_metric import PairwiseRegressionMetric
 from scipy.stats import rankdata
 
-class CorrelationCoefficient(RegressionMetric):
+
+
+
+class CorrelationCoefficient(PairwiseRegressionMetric):
     """
     Calculate the Pearson correlation coefficient between the outputs of two regressors.
     """
@@ -30,7 +33,7 @@ class CorrelationCoefficient(RegressionMetric):
         return covariance / denomenator
     
 
-class mean_squared_difference(RegressionMetric):
+class MeanSquaredDifference(PairwiseRegressionMetric):
     """
     Calculate the mean squared difference between the outputs of two regressors.
     """
@@ -46,7 +49,7 @@ class mean_squared_difference(RegressionMetric):
         return np.mean((self.y1 - self.y2) ** 2)
     
 
-class mean_absolute_difference(RegressionMetric):
+class MeanAbsoluteDifference(PairwiseRegressionMetric):
     """
     Calculate the mean absolute difference between the outputs of two regressors.
     """
@@ -62,7 +65,7 @@ class mean_absolute_difference(RegressionMetric):
         return np.mean(np.abs(self.y1 - self.y2))
 
 
-class error_correlation(RegressionMetric):
+class ErrorCorrelation(PairwiseRegressionMetric):
     """
     Calculate the error correlation between the outputs of two regressors.
     """
@@ -78,9 +81,11 @@ class error_correlation(RegressionMetric):
         return np.corrcoef(self.y1 - self.y_true, self.y2 - self.y_true)[0, 1]
     
 
-class Disagreement_Mesure(RegressionMetric):
+class DisagreementMesure(PairwiseRegressionMetric):
     """
     Calculate the Disagreement Measure between two regressors.
+
+    
     """
         
     def calculate(self):
@@ -98,7 +103,7 @@ class Disagreement_Mesure(RegressionMetric):
         return disagreement_count / len(self.y1)
 
 
-class Rank_Correlation(RegressionMetric):
+class RankCorrelation(PairwiseRegressionMetric):
     """
     Calculate the Rank Correlation between two regressors.
     """
@@ -127,7 +132,7 @@ class Rank_Correlation(RegressionMetric):
         return spearmans
     
 
-class Q_statistic(RegressionMetric):
+class Qstatistic(PairwiseRegressionMetric):
     """
     Calculate the Q statistic between two regressors.
     """
@@ -160,7 +165,7 @@ class Q_statistic(RegressionMetric):
         return (a*d - b*c) / denominator
     
 
-class Covariance_Error(RegressionMetric):
+class CovarianceError(PairwiseRegressionMetric):
     """
     Calculate the Covariance Error between two regressors.
     """
@@ -189,7 +194,7 @@ class Covariance_Error(RegressionMetric):
         return covariance
     
 
-class Partial_Correlation_coefficient(RegressionMetric):
+class PartialCorrelationCoefficient(PairwiseRegressionMetric):
     """
     Calculate the Partial Correlation Coefficient between two regressors.
     """
@@ -223,7 +228,7 @@ class Partial_Correlation_coefficient(RegressionMetric):
         return partial_correlation
 
 
-class Double_Fault_Measure(RegressionMetric):
+class DoubleFaultMeasure(PairwiseRegressionMetric):
     """
     Calculate the Double Fault Measure between two regressors.
     """

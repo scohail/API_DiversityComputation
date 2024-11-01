@@ -2,7 +2,7 @@
 
 # Import all functions from pairwise and non-pairwise metric modules
 
-from.pairwise_metrics import *
+from.Pairwise_metrics import *
 """
 from .pairwise_metrics import (
     CorrelationCoefficient,
@@ -20,7 +20,7 @@ from .pairwise_metrics import (
     
 )
 """
-from .non_pairwise_metrics import *
+from .Nonpairwise_metrics import *
 
 """
 from .non_pairwise_metrics import (

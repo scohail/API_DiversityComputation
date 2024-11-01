@@ -1,5 +1,5 @@
 import unittest
-from diversity_metrics.regression.pairwise_metrics import  CorrelationCoefficient, mean_squared_difference,Disagreement_Mesure,Rank_Correlation , Q_statistic , Covariance_Error,Partial_Correlation_coefficient, Double_Fault_Measure
+from diversity_metrics.regression.Pairwise_metrics import  CorrelationCoefficient, MeanSquaredDifference, DisagreementMesure,RankCorrelation , Qstatistic , CovarianceError,PartialCorrelationCoefficient, DoubleFaultMeasure
 
 # Example usage
 
@@ -15,39 +15,39 @@ def test_correlation_coefficient():
     print("Correlation Coefficient:", result)
 
 def test_mean_squared_difference():
-    mean_squared_difference_metric = mean_squared_difference(y1, y2)    
+    mean_squared_difference_metric = MeanSquaredDifference(y1, y2)    
     result = mean_squared_difference_metric.calculate()
     print("Mean Squared Difference:", result)
 
-def test_disagreement_mesure():
-    disagreement_mesure_metric = Disagreement_Mesure(y1, y2,threshold=0.05)
-    result = disagreement_mesure_metric.calculate()
+def test_disagreementmesure():
+    disagreementmesure_metric = DisagreementMesure(y1, y2,threshold=0.05)
+    result = disagreementmesure_metric.calculate()
     print("Disagreement Mesure:", result)
 
 def test_rank_correlation():
-    rank_correlation_metric = Rank_Correlation(y1, y2)
+    rank_correlation_metric = RankCorrelation(y1, y2)
     result = rank_correlation_metric.calculate()
     print("Rank Correlation:", result)
 
 
 def test_q_statistic():
-    q_statistic_metric = Q_statistic(y1, y2, y_true=y_true)
+    q_statistic_metric = Qstatistic(y1, y2, y_true=y_true)
     result = q_statistic_metric.calculate()
     print("Q Statistic:", result)
     
 def test_covariance_error():
-    covariance_error_metric = Covariance_Error(y1, y2, y_true=y_true)
+    covariance_error_metric = CovarianceError(y1, y2, y_true=y_true)
     result = covariance_error_metric.calculate()
     print("Covariance Error:", result)
 
 
 def test_partial_correlation_coefficient():
-    partial_correlation_coefficient_metric = Partial_Correlation_coefficient(y1, y2, y_true=y_true)
+    partial_correlation_coefficient_metric = PartialCorrelationCoefficient(y1, y2, y_true=y_true)
     result = partial_correlation_coefficient_metric.calculate()
     print("Partial Correlation Coefficient:", result)
 
 def test_double_fault_measure():
-    double_fault_measure_metric = Double_Fault_Measure(y1, y2, y_true=y_true, threshold=0.05)
+    double_fault_measure_metric = DoubleFaultMeasure(y1, y2, y_true=y_true, threshold=0.05)
     result = double_fault_measure_metric.calculate()
     print("Double Fault Measure:", result)
 
