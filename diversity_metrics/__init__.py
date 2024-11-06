@@ -1,8 +1,8 @@
 # diversity_metrics/__init__.py
 
 # Import regression metrics
-from .regression import Pairwise_metrics as reg_pairwise
-from .regression import Nonpairwise_metrics as reg_non_pairwise
+from .regression.Pairwise import Pairwise_metrics as reg_pairwise
+from .regression.NonPairwise import Nonpairwise_metrics as reg_non_pairwise
 
 # Import classification metrics (for later implementation)
 from .classification import pairwise_metrics as cls_pairwise

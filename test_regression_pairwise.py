@@ -1,5 +1,5 @@
 import unittest
-from diversity_metrics.regression.Pairwise_metrics import  CorrelationCoefficient, MeanSquaredDifference, DisagreementMesure,RankCorrelation , Qstatistic , CovarianceError,PartialCorrelationCoefficient, DoubleFaultMeasure
+from diversity_metrics.regression.Pairwise.Pairwise_metrics import  CorrelationCoefficient, MeanSquaredDifference, DisagreementMesure,RankCorrelation , Qstatistic , CovarianceError,PartialCorrelationCoefficient, DoubleFaultMeasure
 
 # Example usage
 

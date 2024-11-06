@@ -1,9 +1,9 @@
-from diversity_metrics.regression.Nonpairwise_metrics import VarianceOutputs, Ambiguity, VariationCoefficient, DiversityDensity, ErrorVariance
+from diversity_metrics.regression import VarianceOutputs, Ambiguity, VariationCoefficient, DiversityDensity, ErrorVariance, AmbiguityDecomposition
 import numpy as np
 
 predictions= ([4.0, 5.4, 7.1, 3.8],
               [5.7, 5.5, 3.1, 9.8],
-              [3.0, 2.0, 4.1, 3.8]
+              [3.0, 2.0, 4.1, 3.8],
               )
 
 y_true = [4.0, 5.4, 7.1, 3.8]
@@ -32,5 +32,10 @@ def test_error_variance():
     results = errorvariance.calculate()
     print("Error Variance :",results)
 
+def test_ambiguity_decomposition():
+    ambiguity_decomposition = AmbiguityDecomposition(predictions=predictions, y_true=y_true)
+    results = ambiguity_decomposition.calculate()
+    print("Ambiguity Decomposition :",results)
 
+test_ambiguity_decomposition()  
 test_error_variance()

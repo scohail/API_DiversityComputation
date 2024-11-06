@@ -140,3 +140,32 @@ class ErrorVariance(NonPairwiseRegressionMetric):
 
         return var.tolist()
     
+
+class AmbiguityDecomposition(NonPairwiseRegressionMetric):
+    """
+    Variance of the errors across all base regressors, reflecting diversity in model errors.
+    """
+    def calculate(self):
+        """
+        Calculate the Ambiguity Decomposition metric.
+
+        Returns:
+        float: The average ambiguity decomposition across all data points.
+        """
+        
+        if self.y_true is None:
+            raise ValueError("True values are required to calculate Ambiguity Decomposition.")
+        # Calculate the mean predictions 
+
+
+        # Calclaute the error between the true values and the predictions
+
+        error = np.mean(self.predictions - self.y_true)**2
+        mean_predictions = np.mean(self.predictions, axis=0)
+        # Calculate the variance for each data point
+        Ambiguity = np.mean((self.predictions - mean_predictions) ** 2, axis=0)
+
+        AD=  error - Ambiguity
+
+        return AD.tolist()
+    
