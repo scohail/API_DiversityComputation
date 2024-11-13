@@ -1,5 +1,5 @@
 import unittest
-from diversity_metrics.regression.Pairwise_metrics import CorrelationCoefficient, Q_statistic
+from diversity_metrics.regression.Pairwise.Pairwise_metrics import CorrelationCoefficient, Q_statistic
 
 class TestCorrelationCoefficient(unittest.TestCase):
 
