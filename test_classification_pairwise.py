@@ -1,5 +1,5 @@
 import unittest
-from diversity_metrics.classification.Pairwise.pairwise_metrics import  CorrelationCoefficient, QStatistics
+from diversity_metrics.classification.Pairwise.pairwise_metrics import  CorrelationCoefficient, QStatistics, DifferencesMeasure, DoubleFaultMeasure, CombinationD_DF
 
 # Example usage
 
@@ -20,6 +20,23 @@ def test_q_statistics():
     result = q_metric.calculate()
     print("Q Statistics:", result)
 
+def test_differences_measure():
+    diff_metric = DifferencesMeasure(y1, y2, y_true)
+    result = diff_metric.calculate()
+    print("Differences Measure:", result)
 
-test_q_statistics()
+def test_double_fault_measure():
+    double_fault_metric = DoubleFaultMeasure(y1, y2, y_true)
+    result = double_fault_metric.calculate()
+    print("Double Fault Measure:", result)
 
+
+def test_combination_d_df():
+    combination_metric = CombinationD_DF(y1, y2, y_true)
+    result = combination_metric.calculate()
+    print("Combination D_DF:", result)
+
+
+test_differences_measure()
+test_double_fault_measure()
+test_combination_d_df()

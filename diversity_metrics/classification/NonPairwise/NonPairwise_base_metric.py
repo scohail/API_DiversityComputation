@@ -32,25 +32,6 @@ class NonPairwiseClassificationMetric(ABC):
         if len(self.y_true) != pred_length:
             raise ValueError("y_true must have the same length as each prediction array.")
 
-    def _binary_counts(self):
-        """
-        Calculate the counts of true positives (a), false positives (b),
-        false negatives (c), and true negatives (d) for a binary classification.
-
-        Parameters:
-        y_pred (array-like): Predicted target values for binary classification.
-
-        Returns:
-        tuple: Counts of (a, b, c, d).
-        """
-    
-        a = np.sum((self.y_true == self.predictions[0]) & (self.y_true == self.predictions[1]))
-        b = np.sum((self.y_true == self.predictions[0]) & (self.y_true != self.predictions[1]))
-        c = np.sum((self.y_true != self.predictions[0]) & (self.y_true == self.predictions[1]))
-        d = np.sum((self.y_true != self.predictions[0]) & (self.y_true != self.predictions[1]))
-
-        return a, b, c, d
-
 
     @abstractmethod
     def calculate(self):
