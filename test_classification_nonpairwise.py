@@ -1,5 +1,5 @@
 import unittest
-from diversity_metrics.classification.NonPairwise.Non_pairwise_metrics import Entropy, KohaviWolpertVariance
+from diversity_metrics.classification.NonPairwise.Non_pairwise_metrics import Entropy, KohaviWolpertVariance, MeasurementInterraterAgreement
 
 
 predictions= ([1, 0, 1, 0],
@@ -19,5 +19,10 @@ def test_KohaviWolpertVariance():
     results = KW_metric.calculate()
     print("KohaviWolpertVariance :", results)
 
-test_KohaviWolpertVariance()
+def test_MeasurementInterraterAgreement():
+    MIA_metric = MeasurementInterraterAgreement(predictions=predictions, y_true=y_true)
+    results = MIA_metric.calculate()
+    print("MeasurementInterraterAgreement :", results)
+
+test_MeasurementInterraterAgreement()
     

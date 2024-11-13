@@ -39,7 +39,7 @@ class  KohaviWolpertVariance(NonPairwiseClassificationMetric):
     """
     def calculate(self):
         """
-        Calculate the Kohavi-Wolpert Variance metric for multiple classifiers.
+        Calculate the KohaPvi-Wolpert Variance metric for multiple classifiers.
 
         Returns:
         float: The Kohavi-Wolpert Variance value.
@@ -53,7 +53,48 @@ class  KohaviWolpertVariance(NonPairwiseClassificationMetric):
             sum_Yj = sum(1 if self.predictions[j][i] == self.y_true[i] else 0 for j in range(L))
             variance_sum += (sum_Yj * (L - sum_Yj)) 
 
-        KW =  (1 / (N * L**2))* variance_sum 
+        KW =  (1 / (N * L**2)) * variance_sum 
 
         return KW
     
+
+class MeasurementInterraterAgreement(NonPairwiseClassificationMetric):
+    """
+    Calculate the the agreement level inside the classifiers set.
+    """
+    def calculate(self):
+        """
+        Calculate the Measurement Interrater Agreement metric for multiple classifiers.
+
+        Returns:
+        float: The Measurement Interrater Agreement value.
+        """
+        N = len(self.predictions[0])
+        L = len(self.predictions)
+        
+        accuracy_sum = 0
+        Yj=[]
+
+
+        for i in range(N):
+            sum_Yj = sum(1 if self.predictions[j][i] == self.y_true[i] else 0 for j in range(L))
+            Yj.append(sum_Yj)
+        
+        print("Yj: ", Yj)   
+        accuracy_sum = sum(Yj)
+        
+        print("Accuracy sum: ", accuracy_sum)
+
+
+        accuracy = accuracy_sum / (N * L)
+
+        numerator = sum(Yj[i] * (L - Yj[i]) for i in range(N))
+        denominator = N * (L - 1) * accuracy * (1 - accuracy)
+        
+        if denominator == 0:
+            raise ZeroDivisionError("Denominator is zero")
+        
+
+        MIA = 1 - (numerator / denominator)
+
+        return MIA
