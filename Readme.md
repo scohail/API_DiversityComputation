@@ -35,9 +35,9 @@
   </a>
 
 <h3 align="center">API_DeversityComputation</h3>
-  T 
+
   <p align="center">
-    his project aims to provide a simple and easy to use API for diversity computation in a given dataset. 
+    This project aims to provide a simple and easy to use API for diversity computation in a given dataset. 
     <br />
     <a href="https://github.com/scohail/API_DiversityComputation"><strong>Explore the docs »</strong></a>
     <br />
@@ -83,9 +83,47 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<br />
+<div align="center">
+  <a href="https://github.com/scohail/API_DeversityComputation">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+This is a academic project that aims to implement a UI and API for diversity computation for machine learninng models in a given dataset. The project is divided into two parts: the API and the UI. The API is responsible for computing the diversity of a given dataset, while the UI is responsible for providing a user-friendly interface for the user to interact with the API. The API is implemented using Python. The UI is not implemented yet, but it will be implemented soon.
+
+There are many ways to compute diversity in both types of ML models `Regression` and `Classification`. The Decirsity metrics implemented in this project are:
+* `Regression Pairwise Diversity`:
+  * `CorrelationCoefficient` : Calculate the Pearson correlation coefficient between the outputs of two regressors.
+  * `MeanSquaredDifference` : Calculate the mean squared difference between the outputs of two regressors.
+  * `MeanAbsoluteDifference` : Calculate the mean absolute difference between the outputs of two regressors.
+  * `ErrorCorrelation` : Calculate the error correlation between the outputs of two regressors.
+  * `Disagreement` : Calculate the disagreement between the outputs of two regressors.
+  * `RankCorrelation` : Calculate the rank correlation between the outputs of two regressors.
+  * `QStatistics` : Calculate the Q statistics between the outputs of two regressors.
+  * `CovarianceError` : Calculate the covariance error between the outputs of two regressors.
+  * `PartialCorrelation` : Calculate the partial correlation between the outputs of two regressors. 
+  * `DoubleFault` : Calculate the double fault between the outputs of two regressors.
+
+* `Regression Nonpairwise diversity` :
+  * `Variance Outputs`:Calculate the Variance of Outputs metric for an ensemble of regressors.
+  * `Ambiguity`:Calculate the expected disagreement between base learners and the ensemble prediction.the Ambiguity metric for an ensemble of regressors.
+  * `Variance Coefficients`:Calculate The ratio of the standard deviation to the mean of the outputs for each data point, highlighting relative variability.
+  * `Diversity density`:Estimate the density of predictions in the output space and assess diversity inversely proportional to this density.Calculate
+  * `Error variance`: Calculate the Variance of the errors across all base regressors, reflecting diversity in model errors.
+  * `Ambiguity decomposition`: calculate the variance of the errors across all base regressors, reflecting diversity in model errors.
+
+* `Classification Pairwise Diversity`:
+  * `Correlation Coefficient`: Correlation Coefficient (ρ) metric to measure the similarity between two classifiers based on their predictions and true labels.
+  * `Qstatistics`: Q Statistics metric to measure the level of agreement between two classifiers.
+  * `Difference measure`: Differences Measure metric that captures the proportion of examples where the two classifiers disagree.
+  * `Dauble Fault`: Double Fault Measure metric that considers the failure of two classifiers simultaneously
+  * `Combination of Diversity Measures and Double Fault`: This measure is a combination between the Differences Measure and the Double Fault Measure 
+
+* `Classification Nonpairwise Diversity`:
+  * `Entropy`: Calculate the entropy of the ensemble predictions for a classification task.
+  * `Kohavi Wolpert Variance`: measure the diversity of a compound set for binary classifiers.
+  * `Measurement interrater agreement`: Calculate the the agreement level inside the classifiers set
+  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
