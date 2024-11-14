@@ -129,7 +129,7 @@ There are many ways to compute diversity in both types of ML models `Regression`
 ### Built With
 
 * [![python][python.org]][python-url]
-
+*[![Next][Next.js]][Next-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -297,8 +297,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-<<<<<<< HEAD
 [python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org/
-=======
->>>>>>> 14e231de9d56c2f1fc4951c8cca5eb83a958db36
