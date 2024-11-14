@@ -83,13 +83,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<br />
-<div align="center">
-  <a href="https://github.com/scohail/API_DeversityComputation">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-<br />
 
 This is a academic project that aims to implement a UI and API for diversity computation for machine learninng models in a given dataset. The project is divided into two parts: the API and the UI. The API is responsible for computing the diversity of a given dataset, while the UI is responsible for providing a user-friendly interface for the user to interact with the API. The API is implemented using Python. The UI is not implemented yet, but it will be implemented soon.
 
