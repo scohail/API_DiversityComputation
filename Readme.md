@@ -89,6 +89,8 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
+<br />
+
 This is a academic project that aims to implement a UI and API for diversity computation for machine learninng models in a given dataset. The project is divided into two parts: the API and the UI. The API is responsible for computing the diversity of a given dataset, while the UI is responsible for providing a user-friendly interface for the user to interact with the API. The API is implemented using Python. The UI is not implemented yet, but it will be implemented soon.
 
 There are many ways to compute diversity in both types of ML models `Regression` and `Classification`. The Decirsity metrics implemented in this project are:
@@ -123,7 +125,7 @@ There are many ways to compute diversity in both types of ML models `Regression`
   * `Entropy`: Calculate the entropy of the ensemble predictions for a classification task.
   * `Kohavi Wolpert Variance`: measure the diversity of a compound set for binary classifiers.
   * `Measurement interrater agreement`: Calculate the the agreement level inside the classifiers set
-  
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
