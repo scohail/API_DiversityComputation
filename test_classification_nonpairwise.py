@@ -2,9 +2,9 @@ import unittest
 from diversity_metrics.classification.NonPairwise.Non_pairwise_metrics import Entropy, KohaviWolpertVariance, MeasurementInterraterAgreement
 
 
-predictions= ([1, 0, 1, 0],
-              [1, 1, 0, 0],
-              [1, 0, 0, 1],
+predictions= ([1, 1, 0, 1],
+              [1, 1, 0, 1],
+              [1, 1, 0, 1],
               )
 
 y_true = [1, 0, 1, 1]

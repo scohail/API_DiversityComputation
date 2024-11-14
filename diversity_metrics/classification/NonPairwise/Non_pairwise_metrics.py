@@ -88,9 +88,11 @@ class MeasurementInterraterAgreement(NonPairwiseClassificationMetric):
 
         accuracy = accuracy_sum / (N * L)
 
-        numerator = sum(Yj[i] * (L - Yj[i]) for i in range(N))
+        numerator = (sum(Yj[i] * (L - Yj[i]) for i in range(N))) / L
         denominator = N * (L - 1) * accuracy * (1 - accuracy)
+
         
+
         if denominator == 0:
             raise ZeroDivisionError("Denominator is zero")
         
