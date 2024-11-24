@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-title">
+          Diversity Metrics Calculator
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">shopping_cart</span> STORE
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item" onclick="loadContent('dashboard')">
+            <a href="#">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item" onclick="loadContent('products')">
+            <a href="#">
+              <span class="material-icons-outlined">inventory_2</span> EDA
+            </a>
+          </li>
+          <li class="sidebar-list-item" onclick="loadContent('categories')">
+            <a href="#">
+              <span class="material-icons-outlined">category</span> Devirsity Calculator
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container" id="main-content">
+        <div class="main-title">
+          <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>PRODUCTS</h3>
+              <span class="material-icons-outlined">inventory_2</span>
+            </div>
+            <h1>249</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>CATEGORIES</h3>
+              <span class="material-icons-outlined">category</span>
+            </div>
+            <h1>25</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>CUSTOMERS</h3>
+              <span class="material-icons-outlined">groups</span>
+            </div>
+            <h1>1500</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>ALERTS</h3>
+              <span class="material-icons-outlined">notification_important</span>
+            </div>
+            <h1>56</h1>
+          </div>
+
+        </div>
+
+        <div class="charts">
+
+          <div class="charts-card">
+            <h2 class="chart-title">Top 5 Products</h2>
+            <div id="bar-chart"></div>
+          </div>
+
+          <div class="charts-card">
+            <h2 class="chart-title">Purchase and Sales Orders</h2>
+            <div id="area-chart"></div>
+          </div>
+
+        </div>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+    <script>
+        function loadContent(page) {
+            const mainContent = document.getElementById('main-content');
+            localStorage.setItem('currentPage', page); // Save the current page to local storage
+
+            
+            
+            switch(page) {
+                case 'dashboard':
+                    mainContent.innerHTML = `
+                        <div class="main-title">
+                          <h2>DASHBOARD</h2>
+                        </div>
+                        <div class="main-cards">
+                          <div class="card">
+                            <div class="card-inner">
+                              <h3>PRODUCTS</h3>
+                              <span class="material-icons-outlined">inventory_2</span>
+                            </div>
+                            <h1>249</h1>
+                          </div>
+                          <div class="card">
+                            <div class="card-inner">
+                              <h3>CATEGORIES</h3>
+                              <span class="material-icons-outlined">category</span>
+                            </div>
+                            <h1>25</h1>
+                          </div>
+                          <div class="card">
+                            <div class="card-inner">
+                              <h3>CUSTOMERS</h3>
+                              <span class="material-icons-outlined">groups</span>
+                            </div>
+                            <h1>1500</h1>
+                          </div>
+                          <div class="card">
+                            <div class="card-inner">
+                              <h3>ALERTS</h3>
+                              <span class="material-icons-outlined">notification_important</span>
+                            </div>
+                            <h1>56</h1>
+                          </div>
+                        </div>
+                        <div class="charts">
+                          <div class="charts-card">
+                            <h2 class="chart-title">Top 5 Products</h2>
+                            <div id="bar-chart"></div>
+                          </div>
+                          <div class="charts-card">
+                            <h2 class="chart-title">Purchase and Sales Orders</h2>
+                            <div id="area-chart"></div>
+                          </div>
+                        </div>`;
+                    break;
+                case 'products':
+                    mainContent.innerHTML = `
+                      <div class="container">
+                        <h1>Diversity Metrics Calculator</h1>
+                        <input type="file" id="fileInput" />
+                        <button onclick="uploadFile()">Calculate Metrics</button>
+                        <div class="results" id="results"></div>
+                      </div>`;
+                    break;
+                case 'categories':
+                    mainContent.innerHTML = '<h1>Categories</h1><p>Here are your categories.</p>';
+                    break;
+                
+            }
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').style.display = 'none';
+        }
+
+        function openSidebar() {
+            document.getElementById('sidebar').style.display = 'block';
+        }
+    </script>
+  </body>
+</html>

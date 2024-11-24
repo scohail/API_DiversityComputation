@@ -37,5 +37,5 @@ def test_ambiguity_decomposition():
     results = ambiguity_decomposition.calculate()
     print("Ambiguity Decomposition :",results)
 
-test_ambiguity_decomposition()  
-test_error_variance()
+
+test_diversity_density()

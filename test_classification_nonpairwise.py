@@ -1,7 +1,6 @@
 import unittest
 from diversity_metrics.classification.NonPairwise.Non_pairwise_metrics import Entropy, KohaviWolpertVariance, MeasurementInterraterAgreement
 
-
 predictions= ([1, 1, 0, 1],
               [1, 1, 0, 1],
               [1, 1, 0, 1],
